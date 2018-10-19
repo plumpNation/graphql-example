@@ -3,6 +3,8 @@ package net.ameizi.model;
 import java.io.Serializable;
 
 public class Book implements Serializable {
+    // @see https://www.vojtechruzicka.com/explicitly-declare-serialversionuid/
+    public static final long serialVersionUID = 1L;
 
     private Long id;
 

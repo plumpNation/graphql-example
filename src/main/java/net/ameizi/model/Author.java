@@ -2,7 +2,10 @@ package net.ameizi.model;
 
 import java.io.Serializable;
 
-public class Author implements Serializable{
+public class Author implements Serializable {
+    // @see https://www.vojtechruzicka.com/explicitly-declare-serialversionuid/
+    public static final long serialVersionUID = 1L;
+
     private Long id;
     private String firstName;
     private String lastName;
