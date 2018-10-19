@@ -1,44 +1,56 @@
-# graphql-example
+GraphQL in Spring Boot example
+==============================
 
-* GraphQL Schema
+## GraphQL Schema
 
 http://localhost:8080/graphql/schema.json
 
 ![](Screenshots/graphql_schema.json.png)
 
-* GraphiQL
+## GraphiQL
 
 http://localhost:8080/graphiql
 
 ![](Screenshots/graphiql.png)
 
-* 操作演示
+## Usage demo
 
-GraphiQL操作演示
+### GET
+
+#### GraphiQL demo
 
 ![](Screenshots/graphql.gif)
 
-Postman操作演示
+#### Postman demo
 
-GET方式
+GET request
 
 `
 http://localhost:8080/graphql?query={findAllBooks{title pageCount isbn author{firstName lastName}}}
 `
 
-对原字符串`{findAllBooks{title pageCount isbn author{firstName lastName}}}`进行`UrlEncode`编码
+Note the query string:
+`{findAllBooks{title pageCount isbn author{firstName lastName}}}`
 
-`
-http://localhost:8080/graphql?query=%7BfindAllBooks%7Btitle%20pageCount%20isbn%20author%7BfirstName%20lastName%7D%7D%7D
-`
+> Postman URL encodes the request for us, which is what our application requires too.
 
 ![](Screenshots/postman_get.png)
 
-POST方式直接提交json
+> If you are testing in the browser you  need a full URL encoded string or you will get a 400 response from the server:
 
-`GraphiQL`中查询语法为：
+> `http://localhost:8080/graphql?query=%7BfindAllBooks%7Btitle%20pageCount%20isbn%20author%7BfirstName%20lastName%7D%7D%7D`
 
-`
+---
+
+### POST
+
+> The endpoint url is still http://localhost:8080/graphql.
+
+#### GraphiQL
+
+Query syntax：
+
+```
 {
   findAllBooks {
     title
@@ -50,25 +62,23 @@ POST方式直接提交json
     }
   }
 }
-`
+```
 
-`Postman`中查询语法为:
+#### Postman
 
-`
+> Postman will need valid JSON in the request body.
+
+```
 {
-    "query":"{findAllBooks {title pageCount isbn author {firstName lastName}}}"
-}`
-
-提交的url仍为 http://localhost:8080/graphql
+    "query": "{findAllBooks {title pageCount isbn author {firstName lastName}}}"
+}
+```
 
 ![](Screenshots/postman_post.png)
 
-操作演示
-
 ![](Screenshots/graphql-postman.gif)
 
-参考文档
+## Reference materials
 
-https://www.pluralsight.com/guides/java-and-j2ee/building-a-graphql-server-with-spring-boot
-
-https://blog.pusher.com/writing-graphql-service-using-kotlin-spring-boot
+- https://www.pluralsight.com/guides/building-a-graphql-server-with-spring-boot
+- https://blog.pusher.com/writing-graphql-service-using-kotlin-spring-boot
